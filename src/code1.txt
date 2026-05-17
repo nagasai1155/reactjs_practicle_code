@@ -1,0 +1,149 @@
+todo app
+import React, { useState } from 'react';
+import './App.css'
+
+function App() {
+  const [task, setTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+  const [editValue, setEditValue] = useState("");
+
+  const handleChange = (e) => {
+    setTask(e.target.value);
+  };
+
+  const addTask = (e) => {
+    e.preventDefault();
+    if (task.trim() === "") return;
+    setTasks([...tasks, task]);
+    setTask("");
+  };
+
+  const deleteTask = (index) => {
+    const newTasks = tasks.filter((_, i) => i !== index);
+    setTasks(newTasks);
+  };
+
+  const startEdit = (index) => {
+    setEditIndex(index);
+    setEditValue(tasks[index]);
+  };
+
+  const saveEdit = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index] = editValue;
+    setTasks(updatedTasks);
+    setEditIndex(null);
+    setEditValue("");
+  };
+
+  return (
+    <div className="App">
+      <form onSubmit={addTask}>
+        <input
+          type="text"
+          placeholder="enter task"
+          onChange={handleChange}
+          value={task}
+        />
+        <button type="submit">add</button>
+      </form>
+
+      <ul>
+        {tasks.map((val, index) => (
+          <li key={index}>
+            {editIndex === index ? (
+              <>
+                <input
+                  type="text"
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                />
+                <button onClick={() => saveEdit(index)}>Save</button>
+                <button onClick={() => setEditIndex(null)}>Cancel</button>
+              </>
+            ) : (
+              <>
+                {val}
+                <button onClick={() => startEdit(index)}>Edit</button>
+                <button onClick={() => deleteTask(index)}>X</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+part-2;
+
+
+
+
+
+
+import React from 'react';
+import {useState} from 'react';
+import './App.css';
+
+function App(){
+  const [task,setTask] =useState("");
+  const [tasklist,setTaskList]=useState([])
+
+  const handleChange=(e)=>{
+    setTask(e.target.value);
+  }
+  
+  const addTask=(e)=>{
+    e.preventDefault();//without refreshing
+    if(task.trim() ==="") return;
+    setTaskList([...tasklist,task]);
+    setTask("");
+  }
+
+  const deleteTask=(index)=>{
+
+    const newtasks= tasklist.filter((_,i)=>i !== index);
+    setTaskList(newtasks);
+
+  }
+
+  return(
+    <>
+   <div className="app">
+
+    <form onSubmit={addTask}>
+     
+     <input type="text" placeholder="enter task" onChange={handleChange} value={task}/>
+     <button type="submit">addTask</button>
+
+
+    </form>
+    <div>
+      <ul>
+        {tasklist.map((val,i)=>{
+          return(
+            <li key={i}>{val}
+            
+             <button onClick={
+              ()=>{
+                deleteTask(i);
+              }
+             } >x</button>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+   </div>
+    </>
+  )
+}
+export default App;

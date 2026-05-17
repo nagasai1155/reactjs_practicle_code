@@ -1,0 +1,39 @@
+import react from 'react'
+import {useEffect,useState} from 'react';
+
+const App1 = ()=>{
+  const[data,setData]=useState([]);
+
+  const fetchData=async()=>{
+    try{
+      let res = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=10");
+      let src = await res.json();
+
+      setData(src);
+      console.log(src);
+
+    }catch(e){
+      console.log(e);
+    }
+  }
+  useEffect(()=>{
+    fetchData();
+  },[])
+
+
+
+  return(
+    <>
+    <h1 style={{textAlign:'center',color:'blue'}}>data displaying</h1>
+    {data.map((val)=>{
+      return(
+        <h5 key={val.id}>{val.title}</h5>
+
+      )
+    })}
+
+
+    </>
+  )
+}
+export default App1;

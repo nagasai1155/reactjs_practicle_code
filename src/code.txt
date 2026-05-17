@@ -1,0 +1,97 @@
+import React,{useState} from 'react'
+import './App.css'
+const App = () => {
+
+  let [counter,setCounter]=useState(0);
+  let [list,setList] = useState([]);
+  let [isAscending, setIsAscending] = useState(true); // toggle flag
+
+  const addToList=()=>{
+    setList([...list,counter]);
+    setCounter(0)
+  }
+  const sorting=()=>{
+    let newsorts=[...list].sort((a,b)=>{
+        return isAscending?a-b:b-a
+    })
+    setList(newsorts);
+    setIsAscending(!isAscending);
+
+  }
+
+  return (
+    <>
+    
+    <div className="app">
+       <button onClick={()=>setCounter(counter-12)}>-</button>
+      <h1>counter: <span>{counter}</span></h1>
+    <button onClick={()=>setCounter(counter+10)}>+</button>
+
+
+    <button onClick={addToList} >addtolist</button>
+    <button onClick={sorting}>sort {isAscending? 'asc':'dsc'}</button>
+    <ul>
+
+      {list.map((val,i)=>{
+        return <li key={i}>{val}</li>
+      })}
+    </ul>
+    </div>
+    
+    
+    
+    
+    </>
+  )
+}
+
+export default App
+
+
+//adding and deleting
+
+
+//import React, { useState } from "react";
+import "./App.css";
+
+const App = () => {
+  const [task, setTask] = useState("");
+  const [todoList, setTodoList] = useState([]);
+
+  const addTodo = () => {
+    if (task.trim() === "") return;
+    setTodoList([...todoList, task]);
+    setTask("");
+  };
+
+  const deleteTodo = (index) => {
+    const newList = todoList.filter((_, i) => i !== index);
+    setTodoList(newList);
+  };
+
+  return (
+    <div className="app">
+      <h1>Simple Todo App</h1>
+
+      <input
+        type="text"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+        placeholder="Enter task"
+      />
+
+      <button onClick={addTodo}>Add</button>
+
+      <ul>
+        {todoList.map((todo, index) => (
+          <li key={index}>
+            {todo}
+            <button onClick={() => deleteTodo(index)}>❌</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default App;

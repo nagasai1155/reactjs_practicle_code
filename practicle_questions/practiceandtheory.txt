@@ -1,0 +1,37 @@
+ Questions I was asked:
+
+🔹 JavaScript Fundamentals
+
+* What is closure? Explain with example
+* Difference between var, let, const
+* What is hoisting?
+* What is event loop and microtasks vs macrotasks
+* Explain throttling vs debouncing
+
+⸻
+
+🔹 React Core Concepts
+
+* What is React and why it is used?
+* Difference between functional and class components
+* What are props and state?
+* What are React hooks? (useState, useEffect)
+* What is Virtual DOM? How does React update UI?
+
+⸻
+
+🔹 Practical React Questions
+
+* How do you fetch data from API in React?
+* What happens if API fails? How will you handle error?
+* How do you show loading state in UI?
+* What is conditional rendering?
+* Why do we use key in lists?
+
+⸻
+
+🔹 Coding / Machine Round
+
+* Build a simple counter using state
+* Filter a list of items based on input search
+* Create a small API fetch and render UI
